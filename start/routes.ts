@@ -30,8 +30,14 @@ Route.group(()=>{
   Route.get('/', async () => {
     return { hello: 'world' }
   })
+  
+  //Resource já inclui na rota (put, post, delete, etc)
+  //apiOnly() define que a fota é refente a uma do tipo API apenas.
+  Route.resource("/moments", "MomentsController").apiOnly();
 
-  Route.resource("/moments", "MomentsController").apiOnly()
+  //Rota de Comentários, no exemplo abaixo fito apenas para post. Mas poderia
+  //ter sido um Resouce, mas no exmplo fizemos apenas para inserção de dados.
+  Route.post("/moments/:momentId/comments", "CommentsController.store");
 
 }).prefix('/api')
 
